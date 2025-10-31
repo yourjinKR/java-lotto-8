@@ -7,16 +7,22 @@ public class InputView {
 
     public String inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        return Console.readLine();
+        String purchaseAmount = Console.readLine();
+        LottoView.nexLine();
+        return purchaseAmount;
     }
 
     public String inputWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        return Console.readLine();
+        String winningNumber = Console.readLine();
+        LottoView.nexLine();
+        return winningNumber;
     }
 
     public String inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Console.readLine();
+        String bonusNumber = Console.readLine();
+        LottoView.nexLine();
+        return bonusNumber;
     }
 }

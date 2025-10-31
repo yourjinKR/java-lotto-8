@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.dto.LottoCreateResponse;
+import lotto.controller.dto.LottoCreateResponse;
 
 public class OutputView {
     public OutputView() {}

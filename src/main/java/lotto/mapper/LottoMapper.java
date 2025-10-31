@@ -2,7 +2,7 @@ package lotto.mapper;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.dto.LottoCreateResponse;
+import lotto.controller.dto.LottoCreateResponse;
 
 public class LottoMapper {
     public List<LottoCreateResponse> toDto(List<Lotto> lottoList) {

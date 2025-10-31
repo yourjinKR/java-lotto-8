@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRule;
 import lotto.domain.PickRule;
-import lotto.dto.LottoCreateResponse;
+import lotto.controller.dto.LottoCreateResponse;
 import lotto.mapper.LottoMapper;
 import lotto.repository.LottoRepository;
 

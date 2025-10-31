@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.LottoConfig;
 import lotto.domain.LottoRule;
-import lotto.dto.LottoCreateResponse;
+import lotto.controller.dto.LottoCreateResponse;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

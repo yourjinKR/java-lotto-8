@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.util.ErrorMessage;
 
 public class LottoRule {
     private final int price;
@@ -11,5 +12,17 @@ public class LottoRule {
         this.price = price;
         this.pickRule = pickRule;
         this.winningRule = winningRule;
+    }
+
+    public PickRule<List<Integer>> getPickRule() {
+        return pickRule;
+    }
+
+    // 금액만큼 횟수 제공
+    public int getChancePickable(int purchaseAmount) {
+        if (purchaseAmount % this.price != 0) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_MONEY.getMessage());
+        }
+        return purchaseAmount / this.price;
     }
 }

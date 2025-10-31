@@ -1,5 +1,10 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.LottoConfig;
+import lotto.domain.Lotto;
+import lotto.domain.LottoRule;
+import lotto.dto.LottoCreateResponse;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -16,15 +21,19 @@ public class LottoController {
     }
 
     public void run() {
-        purchaseAmount();
+        LottoRule lottoRule = LottoConfig.getDefaultLottoRule();
+
+        purchaseAmount(lottoRule);
         winningNumber();
     }
 
 
-    public void purchaseAmount() {
+    public void purchaseAmount(LottoRule lottoRule) {
         // 구입금액 입력
+        int purchaseAmount = Integer.parseInt(inputView.inputPurchaseAmount());
 
         // 구입금액 넘기고 로또 발행결과 받기
+        List<LottoCreateResponse> responseList = lottoService.createByPurchaseAmount(purchaseAmount, lottoRule);
 
         // 로또 발행결과 출력
     }

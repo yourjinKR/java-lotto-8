@@ -31,7 +31,7 @@ class LottoTest {
     void outOfRangeLottoNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 11111)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_RANGE_NUMBER.getMessage());
+                .hasMessage(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
     }
 
     @Test

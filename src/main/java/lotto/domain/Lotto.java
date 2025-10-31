@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import lotto.util.ErrorMessage;
 
 public class Lotto {
@@ -43,7 +42,7 @@ public class Lotto {
                 .anyMatch(number -> (number < LOWER_BOUND) || (number > UPPER_BOUND));
 
         if (outOfRange)
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
     }
 
     public int getMatchingScore(List<Integer> winningNumbers) {

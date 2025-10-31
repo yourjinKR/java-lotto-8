@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import lotto.util.ErrorMessage;
 
 public class Lotto {
@@ -45,9 +47,12 @@ public class Lotto {
     }
 
     public int getMatchingScore(List<Integer> winningNumbers) {
-        return Math.toIntExact(numbers.stream()
-                .map(winningNumbers::contains)
-                .count());
+        List<Integer> matchList = numbers.stream()
+                .filter(o -> winningNumbers.stream()
+                        .anyMatch(Predicate.isEqual(o)))
+                .toList();
+
+        return matchList.size();
     }
 
     public boolean isBonusMatched(int bonusNumber) {

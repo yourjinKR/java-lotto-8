@@ -51,10 +51,18 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("일치하는 번호만큼 점수를 계산함")
-    void getMatchingScoreTest() {
+    @DisplayName("다일치하면 6점")
+    void getAllMatchingScoreTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(lotto.getMatchingScore(List.of(1, 2, 3, 4, 5, 6)))
                 .isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("일치하는 번호만큼 점수를 계산함")
+    void getMatchingScoreTest() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.getMatchingScore(List.of(1, 2, 3, 4, 7, 8)))
+                .isEqualTo(4);
     }
 }

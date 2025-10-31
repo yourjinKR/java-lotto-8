@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import lotto.LottoConfig;
@@ -54,4 +55,7 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
 }

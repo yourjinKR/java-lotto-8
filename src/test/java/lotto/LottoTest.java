@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @Test
@@ -34,4 +34,27 @@ class LottoTest {
                 .hasMessage(ErrorMessage.INVALID_RANGE_NUMBER.getMessage());
     }
 
+    @Test
+    @DisplayName("보너스 번호가 있으면 true 반환")
+    void checkBonusNumberTrueTest() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.isBonusMatched(1))
+                .isTrue();
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 있으면 false 반환")
+    void checkBonusNumberFalseTest() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.isBonusMatched(45))
+                .isFalse();
+    }
+
+    @Test
+    @DisplayName("일치하는 번호만큼 점수를 계산함")
+    void getMatchingScoreTest() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.getMatchingScore(List.of(1, 2, 3, 4, 5, 6)))
+                .isEqualTo(6);
+    }
 }

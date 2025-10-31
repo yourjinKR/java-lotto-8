@@ -10,10 +10,11 @@ import lotto.repository.LottoRepository;
 
 public class LottoService {
     public final LottoRepository lottoRepository;
-    public final LottoMapper lottoMapper = new LottoMapper();
+    public final LottoMapper lottoMapper;
 
-    public LottoService(LottoRepository lottoRepository) {
+    public LottoService(LottoRepository lottoRepository, LottoMapper lottoMapper) {
         this.lottoRepository = lottoRepository;
+        this.lottoMapper = lottoMapper;
     }
 
     public List<LottoCreateResponse> createByPurchaseAmount(int purchaseAmount, LottoRule lottoRule) {

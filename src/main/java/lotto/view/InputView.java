@@ -1,15 +1,16 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.controller.dto.PurchaseLottoRequest;
 
 public class InputView {
     public InputView() {}
 
-    public String inputPurchaseAmount() {
+    public PurchaseLottoRequest inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();
         LottoView.nexLine();
-        return purchaseAmount;
+        return new PurchaseLottoRequest(purchaseAmount);
     }
 
     public String inputWinningNumber() {

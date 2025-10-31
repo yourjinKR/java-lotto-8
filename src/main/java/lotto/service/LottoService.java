@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRule;
 import lotto.domain.PickRule;
-import lotto.controller.dto.LottoCreateResponse;
+import lotto.controller.dto.PurchaseLottoResponse;
 import lotto.mapper.LottoMapper;
 import lotto.repository.LottoRepository;
 
@@ -17,7 +17,7 @@ public class LottoService {
         this.lottoMapper = lottoMapper;
     }
 
-    public List<LottoCreateResponse> createByPurchaseAmount(int purchaseAmount, LottoRule lottoRule) {
+    public List<PurchaseLottoResponse> createByPurchaseAmount(int purchaseAmount, LottoRule lottoRule) {
         int amount = lottoRule.getPickableChance(purchaseAmount);
         PickRule<List<Integer>> pickRule = lottoRule.getPickRule();
 

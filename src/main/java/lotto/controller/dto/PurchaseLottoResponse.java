@@ -2,7 +2,7 @@ package lotto.controller.dto;
 
 import java.util.List;
 
-public record LottoCreateResponse(
+public record PurchaseLottoResponse(
         List<Integer> numbers
 ) {
 }

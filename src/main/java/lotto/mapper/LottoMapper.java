@@ -2,17 +2,17 @@ package lotto.mapper;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.controller.dto.LottoCreateResponse;
+import lotto.controller.dto.PurchaseLottoResponse;
 
 public class LottoMapper {
-    public List<LottoCreateResponse> toDto(List<Lotto> lottoList) {
+    public List<PurchaseLottoResponse> toDto(List<Lotto> lottoList) {
         return lottoList.stream()
                 .map(this::toDto)
                 .toList();
     }
 
-    private LottoCreateResponse toDto(Lotto lotto) {
+    private PurchaseLottoResponse toDto(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
-        return new LottoCreateResponse(numbers);
+        return new PurchaseLottoResponse(numbers);
     }
 }

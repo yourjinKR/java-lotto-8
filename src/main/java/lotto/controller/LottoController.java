@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.LottoConfig;
 import lotto.domain.LottoRule;
-import lotto.controller.dto.LottoCreateResponse;
+import lotto.controller.dto.PurchaseLottoResponse;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -34,7 +34,7 @@ public class LottoController {
         int purchaseAmount = Integer.parseInt(inputView.inputPurchaseAmount());
 
         // 구입금액 넘기고 로또 발행결과 받기
-        List<LottoCreateResponse> responseList = lottoService.createByPurchaseAmount(purchaseAmount, lottoRule);
+        List<PurchaseLottoResponse> responseList = lottoService.createByPurchaseAmount(purchaseAmount, lottoRule);
 
         // 로또 발행결과 출력
         outputView.printBill(responseList);

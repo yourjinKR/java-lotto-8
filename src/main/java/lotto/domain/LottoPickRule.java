@@ -15,7 +15,7 @@ public class LottoPickRule implements PickRule<List<Integer>> {
     }
 
     @Override
-    public List<Integer> pickNumber() {
+    public List<Integer> pick() {
         return Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count);
     }
 }

@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 
 public enum ErrorMessage {
 
+    INVALID_FORMAT_NUMBER("숫자를 입력해주세요"),
     INVALID_RANGE_NUMBER("올바른 범위의 값을 입력해주세요"),
     OUT_OF_RANGE_NUMBER("범위 내 숫자를 입력해주세요"),
     DUPLICATE_LOTTO_NUMBER("로또 내 중복되는 번호가 있어요"),

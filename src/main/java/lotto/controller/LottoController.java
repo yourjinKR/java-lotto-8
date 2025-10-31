@@ -1,8 +1,8 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.LottoConfig;
-import lotto.domain.Lotto;
 import lotto.domain.LottoRule;
 import lotto.dto.LottoCreateResponse;
 import lotto.service.LottoService;
@@ -25,6 +25,7 @@ public class LottoController {
 
         purchaseAmount(lottoRule);
         winningNumber();
+        Console.close();
     }
 
 
@@ -36,6 +37,7 @@ public class LottoController {
         List<LottoCreateResponse> responseList = lottoService.createByPurchaseAmount(purchaseAmount, lottoRule);
 
         // 로또 발행결과 출력
+        outputView.printBill(responseList);
     }
 
     public void winningNumber() {

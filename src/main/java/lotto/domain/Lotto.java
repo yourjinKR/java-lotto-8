@@ -2,13 +2,13 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.function.Predicate;
+import lotto.LottoConfig;
 import lotto.util.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         this.numbers = numbers;
     }
 
@@ -18,9 +18,8 @@ public class Lotto {
         validateRange(numbers);
     }
 
-    // TODO : 상수값 리팩토링 필요 (로또 규칙에서 할당)
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConfig.COUNT) {
             throw new IllegalArgumentException(ErrorMessage.UNMATCH_WINNING_AMOUNT.getMessage());
         }
     }
@@ -35,11 +34,8 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        int LOWER_BOUND = 1;
-        int UPPER_BOUND = 45;
-
         boolean outOfRange = numbers.stream()
-                .anyMatch(number -> (number < LOWER_BOUND) || (number > UPPER_BOUND));
+                .anyMatch(number -> (number < LottoConfig.START_INCLUSIVE) || (number > LottoConfig.END_INCLUSIVE));
 
         if (outOfRange)
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
@@ -47,8 +43,8 @@ public class Lotto {
 
     public int getMatchingScore(List<Integer> winningNumbers) {
         List<Integer> matchList = numbers.stream()
-                .filter(o -> winningNumbers.stream()
-                        .anyMatch(Predicate.isEqual(o)))
+                .filter(number -> winningNumbers.stream()
+                        .anyMatch(Predicate.isEqual(number)))
                 .toList();
 
         return matchList.size();

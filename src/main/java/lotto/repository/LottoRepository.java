@@ -22,4 +22,8 @@ public class LottoRepository {
 
         return lottoList;
     }
+
+    public List<Lotto> findAll() {
+        return this.lottoList;
+    }
 }

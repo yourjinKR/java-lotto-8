@@ -44,5 +44,14 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_NUMBER.getMessage());
     }
 
-    // TODO: 추가 기능 구현
+    public int getMatchingScore(List<Integer> winningNumbers) {
+        return Math.toIntExact(numbers.stream()
+                .map(winningNumbers::contains)
+                .count());
+    }
+
+    public boolean isBonusMatched(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
 }

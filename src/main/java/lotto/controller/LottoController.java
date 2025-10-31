@@ -16,6 +16,24 @@ public class LottoController {
     }
 
     public void run() {
+        purchaseAmount();
+        winningNumber();
+    }
 
+
+    public void purchaseAmount() {
+        // 구입금액 입력
+
+        // 구입금액 넘기고 로또 발행결과 받기
+
+        // 로또 발행결과 출력
+    }
+
+    public void winningNumber() {
+        // 당첨 번호 및 보너스 번호 입력
+
+        // 번호 넘기고 로또 결과 받기
+
+        // 로또 결과 출력
     }
 }

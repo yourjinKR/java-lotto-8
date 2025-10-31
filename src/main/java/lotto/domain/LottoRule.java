@@ -19,7 +19,7 @@ public class LottoRule {
     }
 
     // 금액만큼 횟수 제공
-    public int getChancePickable(int purchaseAmount) {
+    public int getPickableChance(int purchaseAmount) {
         if (purchaseAmount % this.price != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_MONEY.getMessage());
         }

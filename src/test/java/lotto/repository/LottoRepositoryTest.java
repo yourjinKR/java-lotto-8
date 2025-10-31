@@ -13,10 +13,10 @@ class LottoRepositoryTest {
 
     @Test
     @DisplayName("규칙에 따라 여러 로또들을 뽑음")
-    void registerAsAmountByRule() {
+    void createAsAmountByRule() {
         PickRule<List<Integer>> pickRule = new LottoPickRule(1,45,6);
         LottoRepository lottoRepository = new LottoRepository();
-        List<Lotto> lottoList = lottoRepository.registerAsAmountByRule(5, pickRule);
+        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(5, pickRule);
 
         assertThat(lottoList.size())
                 .isEqualTo(5);

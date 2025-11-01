@@ -2,6 +2,6 @@ package lotto.controller.dto;
 
 public record WinningLottoRequest(
         String winningNumber,
-        String bonus
+        String bonusNumber
 ) {
 }

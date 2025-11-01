@@ -30,19 +30,15 @@ public class LottoRule {
         return purchaseAmount / this.price;
     }
 
-    public void matchWinningRule(int matchingScore, boolean isBonusMatched) {
-        winningRule.forEach(winning -> winning.countUpIfMatched(matchingScore, isBonusMatched));
-    }
-
     // false 허용하는 매칭
-    public void matchWinningRuleV2(int matchingScore, boolean isBonusMatched) {
+    public void matchWinningRule(int matchingScore, boolean isBonusMatched) {
         List<Winning> matchWinnings = winningRule.stream()
                 .filter(winning -> winning.getScore() == matchingScore)
                 .toList();
 
         if (matchWinnings.size() == 1) {
             Winning matchWinning = matchWinnings.getFirst();
-            matchWinning.countUpIfMatched(matchingScore, isBonusMatched);
+            matchWinning.countUpIfMatched(matchingScore);
         }
 
         if (matchWinnings.size() == 2) {

@@ -25,4 +25,8 @@ public class LottoRule {
         }
         return purchaseAmount / this.price;
     }
+
+    public void matchWinningRule(int matchingScore, boolean isBonusMatched) {
+        winningRule.forEach(winning -> winning.countUpIfMatched(matchingScore, isBonusMatched));
+    }
 }

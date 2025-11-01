@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.LottoConfig;
 import lotto.util.ErrorMessage;
 
-public class WinningLotto extends Lotto implements HasBonusNumber<Integer> {
+public class WinningLotto extends Lotto {
     private final int bonsNumber;
 
     public WinningLotto(List<Integer> numbers, int bonsNumber) {
@@ -13,7 +13,6 @@ public class WinningLotto extends Lotto implements HasBonusNumber<Integer> {
         this.bonsNumber = bonsNumber;
     }
 
-    @Override
     public Integer getBonusNumber() {
         return bonsNumber;
     }

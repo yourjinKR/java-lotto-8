@@ -13,13 +13,16 @@ public class OutputView {
         int amount = responseList.size();
         System.out.printf("%d개를 구매했습니다.", amount);
         LottoView.nexLine();
+
         responseList.forEach(this::printLottoNumbers);
         LottoView.nexLine();
     }
 
     private void printLottoNumbers(PurchaseResponse response) {
         List<Integer> numbers = response.numbers();
-        System.out.println(numbers);
+        List<Integer> sortedNumbers = numbers.stream().sorted().toList();
+
+        System.out.println(sortedNumbers);
     }
 
     public void printLottoResult(ResultResponse response) {

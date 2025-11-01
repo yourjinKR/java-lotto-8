@@ -13,6 +13,22 @@ public class Winning {
         this.matchedCount = 0;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public boolean isBonus() {
+        return bonus;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
+    public int getMatchedCount() {
+        return matchedCount;
+    }
+
     public boolean isMatched(int matchingScore, boolean isBonusMatched) {
         return (this.score == matchingScore && this.bonus == isBonusMatched);
     }

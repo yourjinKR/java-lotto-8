@@ -18,12 +18,13 @@ public class LottoRepository {
             lottoList.add(lotto);
         }
 
+        this.lottoList.clear();
         this.lottoList.addAll(lottoList);
 
         return lottoList;
     }
 
     public List<Lotto> findAll() {
-        return this.lottoList;
+        return new ArrayList<>(this.lottoList);
     }
 }

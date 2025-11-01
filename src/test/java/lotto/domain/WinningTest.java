@@ -41,7 +41,7 @@ class WinningTest {
     }
 
     @Test
-    @DisplayName("매칭된거라면 카운트가 증가")
+    @DisplayName("많이 매칭됐다면 계속 증가")
     void countUpManyMatchedAmountTest() {
         winning.countUpIfMatched(3, false);
         winning.countUpIfMatched(3, false);
@@ -55,7 +55,7 @@ class WinningTest {
     }
 
     @Test
-    @DisplayName("매칭된거라면 카운트가 증가하지 않음")
+    @DisplayName("매칭된게 아니라면 카운트가 증가하지 않음")
     void countUpMatchedAmountFailTest() {
         winning.countUpIfMatched(6, true);
         List<Winning> list = List.of(winning);
@@ -63,5 +63,14 @@ class WinningTest {
         assertThat(list)
                 .extracting("matchedCount")
                 .containsOnly(0);
+    }
+
+    @Test
+    @DisplayName("5000원짜리 2번 당첨됐으니 상금은 만원")
+    void getTotalPrizeMoneyTest() {
+        winning.countUpIfMatched(3, false);
+        winning.countUpIfMatched(3, false);
+        assertThat(winning.getTotalPrizeMoney())
+                .isEqualTo(10_000);
     }
 }

@@ -1,6 +1,6 @@
 package lotto.controller.dto;
 
-public record WinningLottoResponse(
+public record WinningResponse(
         int score,
         boolean bonus,
         int prizeMoney,

@@ -1,21 +1,21 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.controller.dto.PurchaseLottoRequest;
-import lotto.controller.dto.WinningLottoRequest;
+import lotto.controller.dto.PurchaseRequest;
+import lotto.controller.dto.WinningRequest;
 
 public class InputView {
     public InputView() {}
 
-    public PurchaseLottoRequest inputPurchaseAmount() {
+    public PurchaseRequest inputPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();
         LottoView.nexLine();
 
-        return new PurchaseLottoRequest(purchaseAmount);
+        return new PurchaseRequest(purchaseAmount);
     }
 
-    public WinningLottoRequest inputWinningNumber() {
+    public WinningRequest inputWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumber = Console.readLine();
         LottoView.nexLine();
@@ -24,6 +24,6 @@ public class InputView {
         String bonusNumber = Console.readLine();
         LottoView.nexLine();
 
-        return new WinningLottoRequest(winningNumber, bonusNumber);
+        return new WinningRequest(winningNumber, bonusNumber);
     }
 }

@@ -1,6 +1,6 @@
 package lotto.controller.dto;
 
-public record PurchaseLottoRequest(
+public record PurchaseRequest(
         String purchaseAmount
 ) {
 }

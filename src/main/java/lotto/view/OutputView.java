@@ -1,12 +1,12 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.controller.dto.PurchaseLottoResponse;
+import lotto.controller.dto.PurchaseResponse;
 
 public class OutputView {
     public OutputView() {}
 
-    public void printBill(List<PurchaseLottoResponse> responseList) {
+    public void printBill(List<PurchaseResponse> responseList) {
         int amount = responseList.size();
         System.out.printf("%d개를 구매했습니다.", amount);
         LottoView.nexLine();
@@ -14,7 +14,7 @@ public class OutputView {
         LottoView.nexLine();
     }
 
-    private void printLottoNumbers(PurchaseLottoResponse response) {
+    private void printLottoNumbers(PurchaseResponse response) {
         List<Integer> numbers = response.numbers();
         System.out.println(numbers);
     }

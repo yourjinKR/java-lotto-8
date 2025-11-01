@@ -3,9 +3,9 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.LottoConfig;
-import lotto.controller.dto.PurchaseLottoRequest;
+import lotto.controller.dto.PurchaseRequest;
 import lotto.domain.LottoRule;
-import lotto.controller.dto.PurchaseLottoResponse;
+import lotto.controller.dto.PurchaseResponse;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -33,8 +33,8 @@ public class LottoController {
     public void purchaseAmount(LottoRule lottoRule) {
         while (true) {
             try {
-                PurchaseLottoRequest request = inputView.inputPurchaseAmount();
-                List<PurchaseLottoResponse> responseList = lottoService.createByPurchaseAmount(request, lottoRule);
+                PurchaseRequest request = inputView.inputPurchaseAmount();
+                List<PurchaseResponse> responseList = lottoService.createByPurchaseAmount(request, lottoRule);
                 outputView.printBill(responseList);
                 return;
             } catch (IllegalArgumentException e) {

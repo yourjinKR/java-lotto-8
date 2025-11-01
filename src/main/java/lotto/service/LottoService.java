@@ -1,11 +1,13 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.controller.dto.PurchaseLottoRequest;
+import lotto.controller.dto.PurchaseRequest;
+import lotto.controller.dto.WinningRequest;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRule;
 import lotto.domain.PickRule;
-import lotto.controller.dto.PurchaseLottoResponse;
+import lotto.controller.dto.PurchaseResponse;
+import lotto.domain.Winning;
 import lotto.mapper.LottoMapper;
 import lotto.repository.LottoRepository;
 import lotto.util.ParseUtil;
@@ -19,13 +21,13 @@ public class LottoService {
         this.lottoMapper = lottoMapper;
     }
 
-    public List<PurchaseLottoResponse> createByPurchaseAmount(PurchaseLottoRequest request, LottoRule lottoRule) {
+    public List<PurchaseResponse> createByPurchaseAmount(PurchaseRequest request, LottoRule lottoRule) {
         int purchaseAmount = ParseUtil.parseInt(request.purchaseAmount());
 
         int amount = lottoRule.getPickableChance(purchaseAmount);
         PickRule<List<Integer>> pickRule = lottoRule.getPickRule();
 
-        List<Lotto> lottoList = lottoRepository.registerAsAmountByRule(amount, pickRule);
+        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(amount, pickRule);
 
         return lottoMapper.toDto(lottoList);
     }

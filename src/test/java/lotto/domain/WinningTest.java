@@ -41,6 +41,20 @@ class WinningTest {
     }
 
     @Test
+    @DisplayName("매칭된거라면 카운트가 증가")
+    void countUpManyMatchedAmountTest() {
+        winning.countUpIfMatched(3, false);
+        winning.countUpIfMatched(3, false);
+        winning.countUpIfMatched(3, false);
+        winning.countUpIfMatched(3, false);
+        List<Winning> list = List.of(winning);
+
+        assertThat(list)
+                .extracting("matchedCount")
+                .containsOnly(4);
+    }
+
+    @Test
     @DisplayName("매칭된거라면 카운트가 증가하지 않음")
     void countUpMatchedAmountFailTest() {
         winning.countUpIfMatched(6, true);

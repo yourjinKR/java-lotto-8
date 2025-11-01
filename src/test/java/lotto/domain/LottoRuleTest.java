@@ -23,10 +23,6 @@ class LottoRuleTest {
     }
 
     @Test
-    void matchWinningRule() {
-    }
-
-    @Test
     @DisplayName("4,000원 넣고 20,000원 벌었으면 수익률이 500%임")
     void getYield() {
         lottoRule.matchWinningRule(3, false);
@@ -49,4 +45,32 @@ class LottoRuleTest {
         assertThat(lottoRule.getYield(7))
                 .isEqualTo(285.7);
     }
+
+    @Test
+    @DisplayName("3개 맞추고 보너스 맞춤, 그러나 3개 맞추고 보너스를 틀린 조건의 상금을 받음")
+    void matchWinningRuleV2_true_but_false_matching() {
+        lottoRule.matchWinningRule(3, true);
+
+        assertThat(lottoRule.getYield(1))
+                .isEqualTo(500);
+    }
+
+    @Test
+    @DisplayName("같은 5점 중 보너스를 맞춤")
+    void matchWinningRuleV2_same_score_but_true() {
+        lottoRule.matchWinningRule(5, true);
+
+        assertThat(lottoRule.getYield(1))
+                .isEqualTo(3000000);
+    }
+
+    @Test
+    @DisplayName("3개 맞추고 보너스 맞춤, 그러나 3개 맞추고 보너스를 틀린 조건의 상금을 받음")
+    void matchWinningRuleV2_same_score_but_false() {
+        lottoRule.matchWinningRule(5, false);
+
+        assertThat(lottoRule.getYield(1))
+                .isEqualTo(150000);
+    }
+
 }

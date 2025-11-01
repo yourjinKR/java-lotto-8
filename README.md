@@ -271,6 +271,7 @@
 - [x] 로또 규칙에 저장
 - [x] 로또 규칙과 로또가 일치시 갯수 증가
 - [x] 해당 당첨 규칙에 대한 총상금 계산
+- [x] 보너스 번호 적중 여부를 물어보지 않는 점수대인 경우는 false도 허용
 
 #### 추첨 규칙
 
@@ -295,8 +296,8 @@
 
 > 당첨번호와 보너스번호 또한 객체로 관리
 
-- [ ] `hasBonusNumber` 인터페이스
-  - [ ] `getBonusNumber` 메서드
+- [x] `hasBonusNumber` 인터페이스
+  - [x] `getBonusNumber` 메서드
 
 #### LottoRepository
 

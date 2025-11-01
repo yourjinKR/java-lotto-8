@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.LottoConfig;
 import lotto.controller.dto.PurchaseRequest;
+import lotto.controller.dto.ResultRequest;
+import lotto.controller.dto.ResultResponse;
 import lotto.domain.LottoRule;
 import lotto.controller.dto.PurchaseResponse;
 import lotto.service.LottoService;
@@ -25,7 +27,7 @@ public class LottoController {
         LottoRule lottoRule = LottoConfig.getDefaultLottoRule();
 
         purchaseAmount(lottoRule);
-        winningNumber();
+        winningNumber(lottoRule);
         Console.close();
     }
 
@@ -43,11 +45,16 @@ public class LottoController {
         }
     }
 
-    public void winningNumber() {
-        // 당첨 번호 및 보너스 번호 입력
-
-        // 번호 넘기고 로또 결과 받기
-
-        // 로또 결과 출력
+    public void winningNumber(LottoRule lottoRule) {
+        while (true) {
+            try {
+                ResultRequest request = inputView.inputWinningNumber();
+                ResultResponse response = lottoService.getResult(request, lottoRule);
+                outputView.printLottoResult(response);
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

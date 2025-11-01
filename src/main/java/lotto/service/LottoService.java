@@ -2,7 +2,8 @@ package lotto.service;
 
 import java.util.List;
 import lotto.controller.dto.PurchaseRequest;
-import lotto.controller.dto.WinningRequest;
+import lotto.controller.dto.ResultRequest;
+import lotto.controller.dto.ResultResponse;
 import lotto.domain.Lotto;
 import lotto.domain.LottoRule;
 import lotto.domain.PickRule;
@@ -30,5 +31,27 @@ public class LottoService {
         List<Lotto> lottoList = lottoRepository.createAsAmountByRule(amount, pickRule);
 
         return lottoMapper.toDto(lottoList);
+    }
+
+    public ResultResponse getResult(ResultRequest request, LottoRule lottoRule) {
+        List<Integer> winningNumbers = ParseUtil.parseIntListByDelimiter(request.winningNumber(), ",");
+        int bonusNumber = ParseUtil.parseInt(request.bonusNumber());
+
+        List<Lotto> lottoList = lottoRepository.findAll();
+        lottoList.forEach(lotto -> matchWinningResult(winningNumbers, bonusNumber, lotto, lottoRule));
+
+        List<Winning> winningRule = lottoRule.getWinningRule();
+
+        int lottoSize = lottoList.size();
+        double yield = lottoRule.getYield(lottoSize);
+
+        return lottoMapper.toDto(winningRule, yield);
+    }
+
+    public void matchWinningResult(List<Integer> winningNumbers, int bonusNumber, Lotto lotto, LottoRule lottoRule) {
+        int matchingScore = lotto.getMatchingScore(winningNumbers);
+        boolean isBonusMatched = lotto.isBonusMatched(bonusNumber);
+
+        lottoRule.matchWinningRule(matchingScore, isBonusMatched);
     }
 }

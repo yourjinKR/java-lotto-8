@@ -29,4 +29,15 @@ public class LottoRule {
     public void matchWinningRule(int matchingScore, boolean isBonusMatched) {
         winningRule.forEach(winning -> winning.countUpIfMatched(matchingScore, isBonusMatched));
     }
+
+    // 수익률 계산
+    public double getYield(int lottoSize) {
+        int purchaseAmount = this.price * lottoSize;
+
+        int totalWinningMoney = winningRule.stream()
+                .mapToInt(Winning::getTotalPrizeMoney)
+                .sum();
+
+        return (double) totalWinningMoney / purchaseAmount;
+    }
 }

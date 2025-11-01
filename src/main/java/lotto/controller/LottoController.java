@@ -31,14 +31,16 @@ public class LottoController {
 
 
     public void purchaseAmount(LottoRule lottoRule) {
-        // 구입금액 입력
-        PurchaseLottoRequest request = inputView.inputPurchaseAmount();
-
-        // 구입금액 넘기고 로또 발행결과 받기
-        List<PurchaseLottoResponse> responseList = lottoService.createByPurchaseAmount(request, lottoRule);
-
-        // 로또 발행결과 출력
-        outputView.printBill(responseList);
+        while (true) {
+            try {
+                PurchaseLottoRequest request = inputView.inputPurchaseAmount();
+                List<PurchaseLottoResponse> responseList = lottoService.createByPurchaseAmount(request, lottoRule);
+                outputView.printBill(responseList);
+                return;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public void winningNumber() {

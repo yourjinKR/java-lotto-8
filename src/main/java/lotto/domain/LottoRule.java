@@ -18,6 +18,10 @@ public class LottoRule {
         return pickRule;
     }
 
+    public List<Winning> getWinningRule() {
+        return winningRule;
+    }
+
     // 금액만큼 횟수 제공
     public int getPickableChance(int purchaseAmount) {
         if (purchaseAmount % this.price != 0) {

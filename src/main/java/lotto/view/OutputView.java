@@ -32,7 +32,7 @@ public class OutputView {
         List<WinningResponse> winningResponseList = response.winningResponseList();
         winningResponseList.forEach(this::printWinningResult);
 
-        String yield = MessageFormat.format("{0}%입니다.", response.yield());
+        String yield = MessageFormat.format("총 수익률은 {0}%입니다.", response.yield());
         System.out.println(yield);
     }
 

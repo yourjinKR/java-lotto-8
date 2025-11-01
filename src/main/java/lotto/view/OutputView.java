@@ -40,7 +40,7 @@ public class OutputView {
         String bonusMention = bonusMention(response.bonus());
 
         String result = MessageFormat.format(
-                "{0}개 일치{1} ({2}) - {3}개",
+                "{0}개 일치{1} ({2}원) - {3}개",
                 response.score(),
                 bonusMention,
                 response.prizeMoney(),

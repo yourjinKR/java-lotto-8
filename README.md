@@ -291,6 +291,13 @@
 - [ ] 정적 팩토리 (게임 규칙을 기반으로 객체 생성함)
 - [x] 로또 번호와 보너스 번호를 받고 비교값 계산 후 리턴
 
+#### WinningLotto extends Lotto implements hasBonusNumber
+
+> 당첨번호와 보너스번호 또한 객체로 관리
+
+- [ ] `hasBonusNumber` 인터페이스
+  - [ ] `getBonusNumber` 메서드
+
 #### LottoRepository
 
 > 로또 데이터 생성

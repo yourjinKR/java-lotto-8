@@ -38,6 +38,7 @@ public class LottoRule {
                 .mapToInt(Winning::getTotalPrizeMoney)
                 .sum();
 
-        return (double) totalWinningMoney / purchaseAmount;
+        double yield = (double) totalWinningMoney / purchaseAmount * 100;
+        return (double) Math.round(yield * 10)/10;
     }
 }

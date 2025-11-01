@@ -34,6 +34,25 @@ public class LottoRule {
         winningRule.forEach(winning -> winning.countUpIfMatched(matchingScore, isBonusMatched));
     }
 
+    // false 허용하는 매칭
+    public void matchWinningRuleV2(int matchingScore, boolean isBonusMatched) {
+        List<Winning> matchWinnings = winningRule.stream()
+                .filter(winning -> winning.getScore() == matchingScore)
+                .toList();
+
+        if (matchWinnings.size() == 1) {
+            Winning matchWinning = matchWinnings.getFirst();
+            matchWinning.countUpIfMatched(matchingScore, isBonusMatched);
+        }
+
+        if (matchWinnings.size() == 2) {
+            Winning matchWinning= matchWinnings.stream()
+                    .filter(winning -> winning.isBonus() == isBonusMatched)
+                    .toList().getFirst();
+            matchWinning.countUpIfMatched(matchingScore, isBonusMatched);
+        }
+    }
+
     // 수익률 계산
     public double getYield(int lottoSize) {
         int purchaseAmount = this.price * lottoSize;

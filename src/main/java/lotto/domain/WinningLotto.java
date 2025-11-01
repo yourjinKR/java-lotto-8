@@ -9,6 +9,7 @@ public class WinningLotto extends Lotto implements HasBonusNumber<Integer> {
 
     public WinningLotto(List<Integer> numbers, int bonsNumber) {
         super(numbers);
+        validateBonusNumber(bonsNumber);
         this.bonsNumber = bonsNumber;
     }
 

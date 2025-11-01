@@ -10,4 +10,8 @@ public class Winning {
         this.bonus = bonus;
         this.prizeMoney = prizeMoney;
     }
+
+    public boolean isMatched(int matchingScore, boolean isBonusMatched) {
+        return (this.score == matchingScore && this.bonus == isBonusMatched);
+    }
 }

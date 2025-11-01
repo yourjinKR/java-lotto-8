@@ -35,7 +35,7 @@ public class LottoConfig {
                 new Winning(4, false, 50_000),
                 new Winning(5, false, 1_500_000),
                 new Winning(5, true, 30_000_000),
-                new Winning(6, true, 2_000_000_000)
+                new Winning(6, false, 2_000_000_000)
         );
     }
 }

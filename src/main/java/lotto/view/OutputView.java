@@ -30,7 +30,7 @@ public class OutputView {
         winningResponseList.forEach(this::printWinningResult);
 
         String yield = MessageFormat.format("{0}%입니다.", response.yield());
-        System.out.println();
+        System.out.println(yield);
     }
 
     private void printWinningResult(WinningResponse response) {

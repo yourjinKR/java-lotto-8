@@ -22,4 +22,8 @@ public class Winning {
             matchedCount++;
         }
     }
+
+    public int getTotalPrizeMoney() {
+        return this.prizeMoney * this.matchedCount;
+    }
 }

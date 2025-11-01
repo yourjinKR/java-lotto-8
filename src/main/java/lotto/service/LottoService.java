@@ -9,6 +9,7 @@ import lotto.domain.LottoRule;
 import lotto.domain.PickRule;
 import lotto.controller.dto.PurchaseResponse;
 import lotto.domain.Winning;
+import lotto.domain.WinningLotto;
 import lotto.mapper.LottoMapper;
 import lotto.repository.LottoRepository;
 import lotto.util.ParseUtil;
@@ -37,8 +38,10 @@ public class LottoService {
         List<Integer> winningNumbers = ParseUtil.parseIntListByDelimiter(request.winningNumber(), ",");
         int bonusNumber = ParseUtil.parseInt(request.bonusNumber());
 
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
         List<Lotto> lottoList = lottoRepository.findAll();
-        lottoList.forEach(lotto -> matchWinningResult(winningNumbers, bonusNumber, lotto, lottoRule));
+        lottoList.forEach(lotto -> matchWinningResult(winningLotto, lotto, lottoRule));
 
         List<Winning> winningRule = lottoRule.getWinningRule();
 
@@ -48,7 +51,10 @@ public class LottoService {
         return lottoMapper.toDto(winningRule, yield);
     }
 
-    public void matchWinningResult(List<Integer> winningNumbers, int bonusNumber, Lotto lotto, LottoRule lottoRule) {
+    public void matchWinningResult(WinningLotto winningLotto, Lotto lotto, LottoRule lottoRule) {
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+        int bonusNumber = winningLotto.getBonusNumber();
+
         int matchingScore = lotto.getMatchingScore(winningNumbers);
         boolean isBonusMatched = lotto.isBonusMatched(bonusNumber);
 

@@ -2,7 +2,7 @@ package lotto;
 
 import java.util.List;
 import lotto.domain.LottoPickRule;
-import lotto.domain.LottoRule;
+import lotto.domain.PlayRule;
 import lotto.domain.Winning;
 
 public class LottoConfig {
@@ -12,8 +12,8 @@ public class LottoConfig {
     public static final int PRICE = 1_000;
 
     // 로또 규칙 세팅
-    public static LottoRule getDefaultLottoRule() {
-        return new LottoRule(
+    public static PlayRule getDefaultLottoRule() {
+        return new PlayRule(
                 PRICE,
                 getDefaultLottoPickRule(),
                 getDefaultWinningRule()

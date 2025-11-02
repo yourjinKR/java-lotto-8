@@ -6,7 +6,7 @@ import lotto.LottoConfig;
 import lotto.controller.dto.PurchaseRequest;
 import lotto.controller.dto.ResultRequest;
 import lotto.controller.dto.ResultResponse;
-import lotto.domain.LottoRule;
+import lotto.domain.PlayRule;
 import lotto.controller.dto.PurchaseResponse;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -24,19 +24,19 @@ public class LottoController {
     }
 
     public void run() {
-        LottoRule lottoRule = LottoConfig.getDefaultLottoRule();
+        PlayRule playRule = LottoConfig.getDefaultLottoRule();
 
-        purchaseAmount(lottoRule);
-        winningNumber(lottoRule);
+        purchaseAmount(playRule);
+        winningNumber(playRule);
         Console.close();
     }
 
 
-    public void purchaseAmount(LottoRule lottoRule) {
+    public void purchaseAmount(PlayRule playRule) {
         while (true) {
             try {
                 PurchaseRequest request = inputView.inputPurchaseAmount();
-                List<PurchaseResponse> responseList = lottoService.createByPurchaseAmount(request, lottoRule);
+                List<PurchaseResponse> responseList = lottoService.createByPurchaseAmount(request, playRule);
                 outputView.printBill(responseList);
                 return;
             } catch (IllegalArgumentException e) {
@@ -45,11 +45,11 @@ public class LottoController {
         }
     }
 
-    public void winningNumber(LottoRule lottoRule) {
+    public void winningNumber(PlayRule playRule) {
         while (true) {
             try {
                 ResultRequest request = inputView.inputWinningNumber();
-                ResultResponse response = lottoService.getResult(request, lottoRule);
+                ResultResponse response = lottoService.getResult(request, playRule);
                 outputView.printLottoResult(response);
                 return;
             } catch (IllegalArgumentException e) {

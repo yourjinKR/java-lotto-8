@@ -5,7 +5,7 @@ import lotto.controller.dto.PurchaseRequest;
 import lotto.controller.dto.ResultRequest;
 import lotto.controller.dto.ResultResponse;
 import lotto.domain.Lotto;
-import lotto.domain.LottoRule;
+import lotto.domain.PlayRule;
 import lotto.domain.PickRule;
 import lotto.controller.dto.PurchaseResponse;
 import lotto.domain.Winning;
@@ -23,38 +23,38 @@ public class LottoService {
         this.lottoMapper = lottoMapper;
     }
 
-    public List<PurchaseResponse> createByPurchaseAmount(PurchaseRequest request, LottoRule lottoRule) {
+    public List<PurchaseResponse> createByPurchaseAmount(PurchaseRequest request, PlayRule playRule) {
         int purchaseAmount = ParseUtil.parseInt(request.purchaseAmount());
 
-        int amount = lottoRule.getPickableChance(purchaseAmount);
-        PickRule<List<Integer>> pickRule = lottoRule.getPickRule();
+        int amount = playRule.getPickableChance(purchaseAmount);
+        PickRule<List<Integer>> pickRule = playRule.getPickRule();
 
         List<Lotto> lottoList = lottoRepository.createAsAmountByRule(amount, pickRule);
 
         return lottoMapper.toDto(lottoList);
     }
 
-    public ResultResponse getResult(ResultRequest request, LottoRule lottoRule) {
+    public ResultResponse getResult(ResultRequest request, PlayRule playRule) {
         List<Integer> winningNumbers = ParseUtil.parseIntListByDelimiter(request.winningNumber(), ",");
         int bonusNumber = ParseUtil.parseInt(request.bonusNumber());
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
         List<Lotto> lottoList = lottoRepository.findAll();
-        lottoList.forEach(lotto -> matchWinningResult(winningLotto, lotto, lottoRule));
+        lottoList.forEach(lotto -> matchWinningResult(winningLotto, lotto, playRule));
 
-        List<Winning> winningRule = lottoRule.getWinningRule();
+        List<Winning> winningRule = playRule.getWinningRule();
 
         int lottoSize = lottoList.size();
-        double yield = lottoRule.getYield(lottoSize);
+        double yield = playRule.getYield(lottoSize);
 
         return lottoMapper.toDto(winningRule, yield);
     }
 
-    public void matchWinningResult(WinningLotto winningLotto, Lotto lotto, LottoRule lottoRule) {
+    public void matchWinningResult(WinningLotto winningLotto, Lotto lotto, PlayRule playRule) {
         int matchingScore = lotto.getMatchingScore(winningLotto);
         boolean isBonusMatched = lotto.isBonusMatched(winningLotto);
 
-        lottoRule.matchWinningRule(matchingScore, isBonusMatched);
+        playRule.matchWinningRule(matchingScore, isBonusMatched);
     }
 }

@@ -16,20 +16,6 @@ class WinningTest {
     }
 
     @Test
-    @DisplayName("매칭되는 조건이면 true")
-    void isMatchedTrue() {
-        assertThat(winning.isMatched(3, false))
-                .isTrue();
-    }
-
-    @Test
-    @DisplayName("매칭되는 조건이면 false")
-    void isMatchedFalse() {
-        assertThat(winning.isMatched(4, false))
-                .isFalse();
-    }
-
-    @Test
     @DisplayName("매칭된거라면 카운트가 증가")
     void countUpMatchedAmountTest() {
         winning.countUpIfMatched(3, false);

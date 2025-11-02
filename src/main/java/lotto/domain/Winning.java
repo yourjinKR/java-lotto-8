@@ -29,10 +29,6 @@ public class Winning {
         return matchedCount;
     }
 
-    public boolean isMatched(int matchingScore, boolean isBonusMatched) {
-        return (this.score == matchingScore && this.bonus == isBonusMatched);
-    }
-
     public void countUpIfMatched(int matchingScore) {
         if (this.score == matchingScore) {
             matchedCount++;

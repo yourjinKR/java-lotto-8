@@ -35,10 +35,7 @@ public class LottoService {
     }
 
     public ResultResponse getResult(ResultRequest request, PlayRule playRule) {
-        List<Integer> winningNumbers = ParseUtil.parseIntListByDelimiter(request.winningNumber(), ",");
-        int bonusNumber = ParseUtil.parseInt(request.bonusNumber());
-
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        WinningLotto winningLotto = lottoMapper.toEntity(request);
 
         List<Lotto> lottoList = lottoRepository.findAll();
         lottoList.forEach(lotto -> matchWinningResult(winningLotto, lotto, playRule));

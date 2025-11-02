@@ -27,10 +27,9 @@ public class Lotto {
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        long numberSize = numbers.size();
         long numberUniqueSize = numbers.stream().distinct().count();
 
-        if (numberSize != numberUniqueSize) {
+        if (numberUniqueSize != LottoConfig.COUNT) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }

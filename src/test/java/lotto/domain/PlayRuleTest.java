@@ -15,6 +15,7 @@ class PlayRuleTest {
 
     @BeforeEach
     void setUp() {
+        lottoRepository.clear();
         playRule = LottoConfig.getDefaultLottoRule();
     }
 
@@ -33,7 +34,12 @@ class PlayRuleTest {
         playRule.matchWinningRule(3, false);
         playRule.matchWinningRule(3, false);
 
-        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(4, playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+
+        List<Lotto> lottoList = lottoRepository.findAll();
         assertThat(playRule.getYield(lottoList))
                 .isEqualTo(500);
     }
@@ -46,7 +52,15 @@ class PlayRuleTest {
         playRule.matchWinningRule(3, false);
         playRule.matchWinningRule(3, false);
 
-        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(7, playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+
+        List<Lotto> lottoList = lottoRepository.findAll();
         assertThat(playRule.getYield(lottoList))
                 .isEqualTo(285.7);
     }
@@ -56,7 +70,9 @@ class PlayRuleTest {
     void matchWinningRuleV2_true_but_false_matching() {
         playRule.matchWinningRule(3, true);
 
-        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(1, playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+
+        List<Lotto> lottoList = lottoRepository.findAll();
         assertThat(playRule.getYield(lottoList))
                 .isEqualTo(500);
     }
@@ -66,7 +82,9 @@ class PlayRuleTest {
     void matchWinningRuleV2_same_score_but_true() {
         playRule.matchWinningRule(5, true);
 
-        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(1, playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+
+        List<Lotto> lottoList = lottoRepository.findAll();
         assertThat(playRule.getYield(lottoList))
                 .isEqualTo(3000000);
     }
@@ -76,7 +94,9 @@ class PlayRuleTest {
     void matchWinningRuleV2_same_score_but_false() {
         playRule.matchWinningRule(5, false);
 
-        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(1, playRule.getPickRule());
+        lottoRepository.creatByPickRule(playRule.getPickRule());
+
+        List<Lotto> lottoList = lottoRepository.findAll();
         assertThat(playRule.getYield(lottoList))
                 .isEqualTo(150000);
     }

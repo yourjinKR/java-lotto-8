@@ -7,21 +7,7 @@ import lotto.domain.Lotto;
 import lotto.domain.PickRule;
 
 public class LottoRepository {
-    private final List<Lotto> lottoList = new ArrayList<>();
-
-    public List<Lotto> createAsAmountByRule(int amount, PickRule<List<Integer>> pickRule) {
-        List<Lotto> lottoList = new ArrayList<>();
-
-        for (int i = 0; i < amount; i++) {
-            List<Integer> numbers = pickRule.pick();
-            Lotto lotto = new Lotto(numbers);
-            lottoList.add(lotto);
-        }
-
-        this.lottoList.addAll(lottoList);
-
-        return lottoList;
-    }
+    private static final List<Lotto> lottoList = new ArrayList<>();
 
     public void creatByPickRule(PickRule<List<Integer>> pickRule) {
         List<Integer> numbers = pickRule.pick();
@@ -31,6 +17,10 @@ public class LottoRepository {
     }
 
     public List<Lotto> findAll() {
-        return new ArrayList<>(this.lottoList);
+        return new ArrayList<>(lottoList);
+    }
+
+    public void clear() {
+        lottoList.clear();
     }
 }

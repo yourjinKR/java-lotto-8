@@ -19,7 +19,14 @@ class LottoRepositoryTest {
     void setUp() {
         pickRule = new LottoPickRule(1, 45, 6);
         lottoRepository = new LottoRepository();
-        lottoList = lottoRepository.createAsAmountByRule(5, pickRule);
+
+        lottoRepository.creatByPickRule(pickRule);
+        lottoRepository.creatByPickRule(pickRule);
+        lottoRepository.creatByPickRule(pickRule);
+        lottoRepository.creatByPickRule(pickRule);
+        lottoRepository.creatByPickRule(pickRule);
+
+        lottoList = lottoRepository.findAll();
     }
 
     @Test

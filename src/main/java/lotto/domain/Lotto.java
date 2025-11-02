@@ -43,7 +43,9 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
     }
 
-    public int getMatchingScore(List<Integer> winningNumbers) {
+    public int getMatchingScore(WinningLotto winningLotto) {
+        List<Integer> winningNumbers = winningLotto.getNumbers();
+
         List<Integer> matchList = numbers.stream()
                 .filter(number -> winningNumbers.stream()
                         .anyMatch(Predicate.isEqual(number)))
@@ -52,7 +54,8 @@ public class Lotto {
         return matchList.size();
     }
 
-    public boolean isBonusMatched(int bonusNumber) {
+    public boolean isBonusMatched(WinningLotto winningLotto) {
+        int bonusNumber = winningLotto.getBonusNumber();
         return numbers.contains(bonusNumber);
     }
 

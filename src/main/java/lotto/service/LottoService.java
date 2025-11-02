@@ -52,11 +52,8 @@ public class LottoService {
     }
 
     public void matchWinningResult(WinningLotto winningLotto, Lotto lotto, LottoRule lottoRule) {
-        List<Integer> winningNumbers = winningLotto.getNumbers();
-        int bonusNumber = winningLotto.getBonusNumber();
-
-        int matchingScore = lotto.getMatchingScore(winningNumbers);
-        boolean isBonusMatched = lotto.isBonusMatched(bonusNumber);
+        int matchingScore = lotto.getMatchingScore(winningLotto);
+        boolean isBonusMatched = lotto.isBonusMatched(winningLotto);
 
         lottoRule.matchWinningRule(matchingScore, isBonusMatched);
     }

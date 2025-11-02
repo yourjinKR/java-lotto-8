@@ -9,12 +9,10 @@ import lotto.util.ErrorMessage;
 public class PlayRule {
     public static final int PRICE = 1_000;
     private final PickRule<List<Integer>> pickRule;
-    private final List<Winning> winningRule;
     private final Map<Integer, List<Winning>> winningRuleSet = new HashMap<>();
 
     public PlayRule(PickRule<List<Integer>> pickRule, List<Winning> winningRule) {
         this.pickRule = pickRule;
-        this.winningRule = winningRule;
 
         winningRule.forEach(winning -> {
             winningRuleSet.computeIfAbsent(winning.getScore(), key -> new ArrayList<>()).add(winning);
@@ -26,7 +24,9 @@ public class PlayRule {
     }
 
     public List<Winning> getWinningRule() {
-        return winningRule;
+        return winningRuleSet.values().stream()
+                .flatMap(List::stream)
+                .toList();
     }
 
     public int getPickableChance(int purchaseAmount) {
@@ -42,17 +42,17 @@ public class PlayRule {
         그러나 같은 점수에 보너스 일치 여부에 따라 달라질 경우는 보너스 일치 여부까지 비교
      */
     public void matchWinningRule(int matchingScore, boolean isBonusMatched) {
-        List<Winning> winningList = winningRuleSet.get(matchingScore);
+        List<Winning> matchedWinnings = winningRuleSet.get(matchingScore);
 
-        if (winningList == null) return;
+        if (matchedWinnings == null) return;
 
-        if (winningList.size() == 1) {
-            Winning matchWinning = winningList.getFirst();
+        if (matchedWinnings.size() == 1) {
+            Winning matchWinning = matchedWinnings.getFirst();
             matchWinning.countUpIfMatched(matchingScore);
         }
 
-        if (winningList.size() > 1) {
-            winningList.forEach(winning -> winning.countUpIfMatched(matchingScore, isBonusMatched));
+        if (matchedWinnings.size() > 1) {
+            matchedWinnings.forEach(winning -> winning.countUpIfMatched(matchingScore, isBonusMatched));
         }
     }
 
@@ -60,6 +60,8 @@ public class PlayRule {
     public double getYield(List<Lotto> lottoList) {
         int lottoSize = lottoList.size();
         int purchaseAmount = PRICE * lottoSize;
+
+        List<Winning> winningRule = getWinningRule();
 
         int totalWinningMoney = winningRule.stream()
                 .mapToInt(Winning::getTotalPrizeMoney)

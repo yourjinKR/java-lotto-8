@@ -6,9 +6,13 @@ import lotto.domain.PlayRule;
 import lotto.domain.Winning;
 
 public class LottoConfig {
+    // 시작 번호
     public static final int START_INCLUSIVE = 1;
+    // 끝 번호
     public static final int END_INCLUSIVE = 45;
+    // 갯수
     public static final int COUNT = 6;
+    // 로또 가격
     public static final int PRICE = 1_000;
 
     // 로또 규칙 세팅
@@ -23,9 +27,9 @@ public class LottoConfig {
     // 추첨 규칙 세팅
     public static LottoPickRule getDefaultLottoPickRule() {
         return new LottoPickRule(
-                LottoConfig.START_INCLUSIVE,
-                LottoConfig.END_INCLUSIVE,
-                LottoConfig.COUNT);
+                START_INCLUSIVE,
+                END_INCLUSIVE,
+                COUNT);
     }
 
     // 당첨 기준과 상금을 아래에 세팅

@@ -4,12 +4,11 @@ import java.util.List;
 import lotto.util.ErrorMessage;
 
 public class PlayRule {
-    private final int price;
+    public static final int PRICE = 1_000;
     private final PickRule<List<Integer>> pickRule;
     private final List<Winning> winningRule;
 
-    public PlayRule(int price, PickRule<List<Integer>> pickRule, List<Winning> winningRule) {
-        this.price = price;
+    public PlayRule(PickRule<List<Integer>> pickRule, List<Winning> winningRule) {
         this.pickRule = pickRule;
         this.winningRule = winningRule;
     }
@@ -24,10 +23,10 @@ public class PlayRule {
 
     // 금액만큼 횟수 제공
     public int getPickableChance(int purchaseAmount) {
-        if (purchaseAmount % this.price != 0) {
+        if (purchaseAmount % PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_MONEY.getMessage());
         }
-        return purchaseAmount / this.price;
+        return purchaseAmount / PRICE;
     }
 
     // false 허용하는 매칭
@@ -52,7 +51,7 @@ public class PlayRule {
     // 수익률 계산
     public double getYield(List<Lotto> lottoList) {
         int lottoSize = lottoList.size();
-        int purchaseAmount = this.price * lottoSize;
+        int purchaseAmount = PRICE * lottoSize;
 
         int totalWinningMoney = winningRule.stream()
                 .mapToInt(Winning::getTotalPrizeMoney)

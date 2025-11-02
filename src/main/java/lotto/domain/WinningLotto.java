@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.LottoConfig;
 import lotto.util.ErrorMessage;
 
 public class WinningLotto extends Lotto {
@@ -18,7 +17,7 @@ public class WinningLotto extends Lotto {
     }
 
     private void validateBonusNumber(int bonsNumber) {
-        if ((bonsNumber < LottoConfig.START_INCLUSIVE) || (bonsNumber > LottoConfig.END_INCLUSIVE)) {
+        if ((bonsNumber < START_INCLUSIVE) || (bonsNumber > END_INCLUSIVE)) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
         }
     }

@@ -3,10 +3,12 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import lotto.LottoConfig;
 import lotto.util.ErrorMessage;
 
 public class Lotto {
+    public static final int START_INCLUSIVE = 1;
+    public static final int END_INCLUSIVE = 45;
+    public static final int COUNT = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -21,7 +23,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LottoConfig.COUNT) {
+        if (numbers.size() != COUNT) {
             throw new IllegalArgumentException(ErrorMessage.UNMATCH_WINNING_AMOUNT.getMessage());
         }
     }
@@ -29,14 +31,14 @@ public class Lotto {
     private void validateDuplicate(List<Integer> numbers) {
         long numberUniqueSize = numbers.stream().distinct().count();
 
-        if (numberUniqueSize != LottoConfig.COUNT) {
+        if (numberUniqueSize != COUNT) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         boolean outOfRange = numbers.stream()
-                .anyMatch(number -> (number < LottoConfig.START_INCLUSIVE) || (number > LottoConfig.END_INCLUSIVE));
+                .anyMatch(number -> (number < START_INCLUSIVE) || (number > END_INCLUSIVE));
 
         if (outOfRange)
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());

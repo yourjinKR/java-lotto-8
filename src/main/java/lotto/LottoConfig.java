@@ -1,39 +1,30 @@
 package lotto;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.LottoPickRule;
 import lotto.domain.PlayRule;
 import lotto.domain.Winning;
 
 public class LottoConfig {
-    // 시작 번호
-    public static final int START_INCLUSIVE = 1;
-    // 끝 번호
-    public static final int END_INCLUSIVE = 45;
-    // 갯수
-    public static final int COUNT = 6;
-    // 로또 가격
-    public static final int PRICE = 1_000;
-
     // 로또 규칙 세팅
     public static PlayRule getDefaultLottoRule() {
         return new PlayRule(
-                PRICE,
                 getDefaultLottoPickRule(),
                 getDefaultWinningRule()
         );
     }
 
     // 추첨 규칙 세팅
-    public static LottoPickRule getDefaultLottoPickRule() {
+    private static LottoPickRule getDefaultLottoPickRule() {
         return new LottoPickRule(
-                START_INCLUSIVE,
-                END_INCLUSIVE,
-                COUNT);
+                Lotto.START_INCLUSIVE,
+                Lotto.END_INCLUSIVE,
+                Lotto.COUNT);
     }
 
     // 당첨 기준과 상금을 아래에 세팅
-    public static List<Winning> getDefaultWinningRule() {
+    private static List<Winning> getDefaultWinningRule() {
         return List.of(
                 new Winning(3, false, 5_000),
                 new Winning(4, false, 50_000),

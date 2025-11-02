@@ -2,13 +2,16 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.List;
 import lotto.LottoConfig;
+import lotto.repository.LottoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class PlayRuleTest {
     PlayRule playRule;
+    LottoRepository lottoRepository = new LottoRepository();
 
     @BeforeEach
     void setUp() {
@@ -30,7 +33,8 @@ class PlayRuleTest {
         playRule.matchWinningRule(3, false);
         playRule.matchWinningRule(3, false);
 
-        assertThat(playRule.getYield(4))
+        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(4, playRule.getPickRule());
+        assertThat(playRule.getYield(lottoList))
                 .isEqualTo(500);
     }
 
@@ -42,7 +46,8 @@ class PlayRuleTest {
         playRule.matchWinningRule(3, false);
         playRule.matchWinningRule(3, false);
 
-        assertThat(playRule.getYield(7))
+        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(7, playRule.getPickRule());
+        assertThat(playRule.getYield(lottoList))
                 .isEqualTo(285.7);
     }
 
@@ -51,7 +56,8 @@ class PlayRuleTest {
     void matchWinningRuleV2_true_but_false_matching() {
         playRule.matchWinningRule(3, true);
 
-        assertThat(playRule.getYield(1))
+        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(1, playRule.getPickRule());
+        assertThat(playRule.getYield(lottoList))
                 .isEqualTo(500);
     }
 
@@ -60,7 +66,8 @@ class PlayRuleTest {
     void matchWinningRuleV2_same_score_but_true() {
         playRule.matchWinningRule(5, true);
 
-        assertThat(playRule.getYield(1))
+        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(1, playRule.getPickRule());
+        assertThat(playRule.getYield(lottoList))
                 .isEqualTo(3000000);
     }
 
@@ -69,7 +76,8 @@ class PlayRuleTest {
     void matchWinningRuleV2_same_score_but_false() {
         playRule.matchWinningRule(5, false);
 
-        assertThat(playRule.getYield(1))
+        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(1, playRule.getPickRule());
+        assertThat(playRule.getYield(lottoList))
                 .isEqualTo(150000);
     }
 

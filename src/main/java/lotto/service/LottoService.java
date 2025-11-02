@@ -42,8 +42,7 @@ public class LottoService {
 
         List<Winning> winningRule = playRule.getWinningRule();
 
-        int lottoSize = lottoList.size();
-        double yield = playRule.getYield(lottoSize);
+        double yield = playRule.getYield(lottoList);
 
         return lottoMapper.toDto(winningRule, yield);
     }

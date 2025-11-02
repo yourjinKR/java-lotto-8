@@ -50,7 +50,8 @@ public class PlayRule {
     }
 
     // 수익률 계산
-    public double getYield(int lottoSize) {
+    public double getYield(List<Lotto> lottoList) {
+        int lottoSize = lottoList.size();
         int purchaseAmount = this.price * lottoSize;
 
         int totalWinningMoney = winningRule.stream()

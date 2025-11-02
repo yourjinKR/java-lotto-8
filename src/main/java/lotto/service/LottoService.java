@@ -11,7 +11,7 @@ import lotto.controller.dto.PurchaseResponse;
 import lotto.domain.Winning;
 import lotto.domain.WinningLotto;
 import lotto.mapper.LottoMapper;
-import lotto.repository.LottoRepository;
+import lotto.domain.repository.LottoRepository;
 import lotto.util.ParseUtil;
 
 public class LottoService {

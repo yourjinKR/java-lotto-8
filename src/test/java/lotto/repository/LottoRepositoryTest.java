@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPickRule;
 import lotto.domain.PickRule;
+import lotto.domain.repository.LottoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

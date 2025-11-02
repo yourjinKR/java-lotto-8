@@ -18,10 +18,16 @@ public class LottoRepository {
             lottoList.add(lotto);
         }
 
-        this.lottoList.clear();
         this.lottoList.addAll(lottoList);
 
         return lottoList;
+    }
+
+    public void creatByPickRule(PickRule<List<Integer>> pickRule) {
+        List<Integer> numbers = pickRule.pick();
+        Lotto lotto = new Lotto(numbers);
+
+        lottoList.add(lotto);
     }
 
     public List<Lotto> findAll() {

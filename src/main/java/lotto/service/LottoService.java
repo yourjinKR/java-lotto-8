@@ -26,10 +26,14 @@ public class LottoService {
     public List<PurchaseResponse> createByPurchaseAmount(PurchaseRequest request, PlayRule playRule) {
         int purchaseAmount = ParseUtil.parseInt(request.purchaseAmount());
 
-        int amount = playRule.getPickableChance(purchaseAmount);
+        int chance = playRule.getPickableChance(purchaseAmount);
         PickRule<List<Integer>> pickRule = playRule.getPickRule();
 
-        List<Lotto> lottoList = lottoRepository.createAsAmountByRule(amount, pickRule);
+        for (int i = 0; i < chance; i++) {
+            lottoRepository.creatByPickRule(pickRule);
+        }
+
+        List<Lotto> lottoList = lottoRepository.findAll();
 
         return lottoMapper.toDto(lottoList);
     }

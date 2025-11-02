@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import lotto.util.ErrorMessage;
 
-// TODO : Map으로 관리
 public class PlayRule {
     public static final int PRICE = 1_000;
     private final PickRule<List<Integer>> pickRule;
@@ -37,27 +36,12 @@ public class PlayRule {
         return purchaseAmount / PRICE;
     }
 
-    public void matchWinningRule(int matchingScore, boolean isBonusMatched) {
-        List<Winning> matchWinnings = winningRule.stream()
-                .filter(winning -> winning.getScore() == matchingScore)
-                .toList();
-
-        if (matchWinnings.size() == 1) {
-            Winning matchWinning = matchWinnings.getFirst();
-            matchWinning.countUpIfMatched(matchingScore);
-        }
-
-        if (matchWinnings.size() > 1) {
-            matchWinnings.forEach(winning -> winning.countUpIfMatched(matchingScore, isBonusMatched));
-        }
-    }
-
     /*
         당첨 조건을 점수별로 매핑하여 관리
         해당 점수와 일치하는 당첨 조건이 1개일 경우는 보너스 일치 여부와 상관 없음
         그러나 같은 점수에 보너스 일치 여부에 따라 달라질 경우는 보너스 일치 여부까지 비교
      */
-    public void matchWinningRuleV2(int matchingScore, boolean isBonusMatched) {
+    public void matchWinningRule(int matchingScore, boolean isBonusMatched) {
         List<Winning> winningList = winningRuleSet.get(matchingScore);
 
         if (winningList == null) return;

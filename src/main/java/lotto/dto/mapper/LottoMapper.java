@@ -1,11 +1,11 @@
-package lotto.mapper;
+package lotto.dto.mapper;
 
 import java.util.List;
-import lotto.controller.dto.ResultRequest;
-import lotto.controller.dto.ResultResponse;
-import lotto.controller.dto.WinningResponse;
+import lotto.dto.ResultRequest;
+import lotto.dto.ResultResponse;
+import lotto.dto.WinningResponse;
 import lotto.domain.Lotto;
-import lotto.controller.dto.PurchaseResponse;
+import lotto.dto.PurchaseResponse;
 import lotto.domain.Winning;
 import lotto.domain.WinningLotto;
 import lotto.util.ParseUtil;

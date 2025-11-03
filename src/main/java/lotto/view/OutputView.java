@@ -2,9 +2,9 @@ package lotto.view;
 
 import java.text.MessageFormat;
 import java.util.List;
-import lotto.controller.dto.PurchaseResponse;
-import lotto.controller.dto.ResultResponse;
-import lotto.controller.dto.WinningResponse;
+import lotto.dto.PurchaseResponse;
+import lotto.dto.ResultResponse;
+import lotto.dto.WinningResponse;
 
 public class OutputView {
     public OutputView() {}

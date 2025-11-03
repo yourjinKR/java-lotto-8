@@ -1,16 +1,16 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.controller.dto.PurchaseRequest;
-import lotto.controller.dto.ResultRequest;
-import lotto.controller.dto.ResultResponse;
+import lotto.dto.PurchaseRequest;
+import lotto.dto.ResultRequest;
+import lotto.dto.ResultResponse;
 import lotto.domain.Lotto;
 import lotto.domain.PlayRule;
 import lotto.domain.PickRule;
-import lotto.controller.dto.PurchaseResponse;
+import lotto.dto.PurchaseResponse;
 import lotto.domain.Winning;
 import lotto.domain.WinningLotto;
-import lotto.mapper.LottoMapper;
+import lotto.dto.mapper.LottoMapper;
 import lotto.domain.repository.LottoRepository;
 import lotto.util.ParseUtil;
 

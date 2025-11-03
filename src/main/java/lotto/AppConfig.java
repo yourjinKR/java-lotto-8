@@ -1,7 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.mapper.LottoMapper;
+import lotto.dto.mapper.LottoMapper;
 import lotto.domain.repository.LottoRepository;
 import lotto.service.LottoService;
 import lotto.view.InputView;

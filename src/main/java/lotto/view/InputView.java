@@ -1,8 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.controller.dto.PurchaseRequest;
-import lotto.controller.dto.ResultRequest;
+import lotto.dto.PurchaseRequest;
+import lotto.dto.ResultRequest;
 
 public class InputView {
     public InputView() {}

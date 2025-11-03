@@ -1,4 +1,4 @@
-package lotto.controller.dto;
+package lotto.dto;
 
 public record WinningResponse(
         int score,

@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.List;
 import lotto.LottoConfig;
 import lotto.domain.repository.LottoRepository;
+import lotto.util.ErrorMessage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,6 +27,22 @@ class PlayRuleTest {
     void getPickableChance() {
         assertThat(playRule.getPickableChance(2000))
                 .isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("가격이 1000원 단위가 아닐 경우")
+    void getPickableChanceCheck() {
+        assertThatThrownBy(() -> playRule.getPickableChance(2002))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT_MONEY.getMessage());
+    }
+
+    @Test
+    @DisplayName("가격에 음수를 넣으면 에러")
+    void getPickableChanceMinus() {
+        assertThatThrownBy(() -> playRule.getPickableChance(-2000))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.INVALID_INPUT_MONEY.getMessage());
     }
 
     @Test

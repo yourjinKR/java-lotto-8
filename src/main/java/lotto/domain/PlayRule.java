@@ -30,7 +30,7 @@ public class PlayRule {
     }
 
     public int getPickableChance(int purchaseAmount) {
-        if (purchaseAmount % PRICE != 0) {
+        if (purchaseAmount % PRICE != 0 || purchaseAmount < 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_MONEY.getMessage());
         }
         return purchaseAmount / PRICE;

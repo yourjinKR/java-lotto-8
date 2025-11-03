@@ -4,16 +4,16 @@ package lotto.domain.repository;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.PickRule;
 
 public class LottoRepository {
     private static final List<Lotto> lottoList = new ArrayList<>();
 
-    public void creatByPickRule(PickRule<List<Integer>> pickRule) {
-        List<Integer> numbers = pickRule.pick();
-        Lotto lotto = new Lotto(numbers);
-
+    public void save(Lotto lotto) {
         lottoList.add(lotto);
+    }
+
+    public void saveAll(List<Lotto> lottoList) {
+        lottoList.forEach(this::save);
     }
 
     public List<Lotto> findAll() {

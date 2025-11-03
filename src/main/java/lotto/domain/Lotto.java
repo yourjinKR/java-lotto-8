@@ -16,6 +16,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static Lotto pickRuleFrom(PickRule<List<Integer>> pickRule) {
+        List<Integer> numbers = pickRule.pick();
+        return new Lotto(numbers);
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);

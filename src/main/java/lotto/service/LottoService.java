@@ -30,7 +30,8 @@ public class LottoService {
         PickRule<List<Integer>> pickRule = playRule.getPickRule();
 
         for (int i = 0; i < chance; i++) {
-            lottoRepository.creatByPickRule(pickRule);
+            Lotto lotto = Lotto.pickRuleFrom(pickRule);
+            lottoRepository.save(lotto);
         }
 
         List<Lotto> lottoList = lottoRepository.findAll();

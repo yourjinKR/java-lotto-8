@@ -12,11 +12,13 @@ import org.junit.jupiter.api.Test;
 class PlayRuleTest {
     PlayRule playRule;
     LottoRepository lottoRepository = new LottoRepository();
+    PickRule<List<Integer>> pickRule;
 
     @BeforeEach
     void setUp() {
         lottoRepository.clear();
         playRule = LottoConfig.getDefaultLottoRule();
+        pickRule = playRule.getPickRule();
     }
 
     @Test
@@ -34,10 +36,10 @@ class PlayRuleTest {
         playRule.matchWinningRule(3, false);
         playRule.matchWinningRule(3, false);
 
-        lottoRepository.creatByPickRule(playRule.getPickRule());
-        lottoRepository.creatByPickRule(playRule.getPickRule());
-        lottoRepository.creatByPickRule(playRule.getPickRule());
-        lottoRepository.creatByPickRule(playRule.getPickRule());
+        for (int i = 0; i < 4; i++) {
+            Lotto lotto = Lotto.pickRuleFrom(pickRule);
+            lottoRepository.save(lotto);
+        }
 
         List<Lotto> lottoList = lottoRepository.findAll();
         assertThat(playRule.getYield(lottoList))
@@ -52,13 +54,10 @@ class PlayRuleTest {
         playRule.matchWinningRule(3, false);
         playRule.matchWinningRule(3, false);
 
-        lottoRepository.creatByPickRule(playRule.getPickRule());
-        lottoRepository.creatByPickRule(playRule.getPickRule());
-        lottoRepository.creatByPickRule(playRule.getPickRule());
-        lottoRepository.creatByPickRule(playRule.getPickRule());
-        lottoRepository.creatByPickRule(playRule.getPickRule());
-        lottoRepository.creatByPickRule(playRule.getPickRule());
-        lottoRepository.creatByPickRule(playRule.getPickRule());
+        for (int i = 0; i < 7; i++) {
+            Lotto lotto = Lotto.pickRuleFrom(pickRule);
+            lottoRepository.save(lotto);
+        }
 
         List<Lotto> lottoList = lottoRepository.findAll();
         assertThat(playRule.getYield(lottoList))
@@ -70,7 +69,8 @@ class PlayRuleTest {
     void matchWinningRuleV2_true_but_false_matching() {
         playRule.matchWinningRule(3, true);
 
-        lottoRepository.creatByPickRule(playRule.getPickRule());
+        Lotto lotto = Lotto.pickRuleFrom(pickRule);
+        lottoRepository.save(lotto);
 
         List<Lotto> lottoList = lottoRepository.findAll();
         assertThat(playRule.getYield(lottoList))
@@ -82,7 +82,8 @@ class PlayRuleTest {
     void matchWinningRuleV2_same_score_but_true() {
         playRule.matchWinningRule(5, true);
 
-        lottoRepository.creatByPickRule(playRule.getPickRule());
+        Lotto lotto = Lotto.pickRuleFrom(pickRule);
+        lottoRepository.save(lotto);
 
         List<Lotto> lottoList = lottoRepository.findAll();
         assertThat(playRule.getYield(lottoList))
@@ -94,7 +95,8 @@ class PlayRuleTest {
     void matchWinningRuleV2_same_score_but_false() {
         playRule.matchWinningRule(5, false);
 
-        lottoRepository.creatByPickRule(playRule.getPickRule());
+        Lotto lotto = Lotto.pickRuleFrom(pickRule);
+        lottoRepository.save(lotto);
 
         List<Lotto> lottoList = lottoRepository.findAll();
         assertThat(playRule.getYield(lottoList))
